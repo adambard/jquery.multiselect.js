@@ -3,7 +3,6 @@
         var source_select = this;
 
         selected_vals = this.val() || [];
-        console.log(selected_vals)
 
         var not_selected = $('"<select multiple="multiple" class="options-not-selected"></select>');
         var selected = $('"<select multiple="multiple" class="options-selected"></select>');
@@ -21,7 +20,7 @@
             copy.unbind('dblclick').bind('dblclick', select_el);
             $(this).closest(".jquery-multiselect").find(".options-not-selected").append(copy);
             $(this).remove()
-        }
+        };
 
         var select_el = function(){
             var copy = $(this).clone();
@@ -31,19 +30,30 @@
             $(this).remove()
         };
 
+        // For IE's benefit, since it doesn't recognize dblclick on <option>s
+        var select_dblclick = function(){
+            var i = $(this).attr('selectedIndex');
+            var opt = $($(this).find('option')[i])
+
+            opt.dblclick()
+        }
+
         // Initialize each option's position, and distribute dblclick callbacks.
         $("option", this).each(function(){
             var el = $(this)
 
 
             if( $.inArray(el.val(), selected_vals) > -1 ){
-                el.dblclick(deselect_el);
+                el.bind('dblclick', deselect_el);
                 selected.append(el);
             }else{
-                el.dblclick(select_el);
+                el.bind('dblclick', select_el);
                 not_selected.append(el);
             }
         });
+
+        selected.bind('dblclick', select_dblclick);
+        not_selected.bind('dblclick', select_dblclick);
 
         // Create the element that will replace the multiselect
         var el = $('<div class="jquery-multiselect"></div>');
