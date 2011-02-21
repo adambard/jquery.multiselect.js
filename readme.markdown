@@ -30,8 +30,6 @@ Usage
 
 Just put the following snippet in your `<head>` (correcting the paths, obviously):
 
-    <!-- Presuming you already have jquery included -->
-
     <script src="js/jquery-1.5.min.js" type="text/javascript"></script>
     <script src="js/jquery.multiselect.js" type="text/javascript"></script>
     <script>
