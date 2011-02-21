@@ -28,7 +28,7 @@ elements on form submission.
 Usage
 ------
 
-Just put the following snippet in your <head> (correcting the paths, obviously):
+Just put the following snippet in your `<head>` (correcting the paths, obviously):
 
     <!-- Presuming you already have jquery included -->
 
