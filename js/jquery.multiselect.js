@@ -60,7 +60,7 @@
 
             // For IE's benefit, since it doesn't recognize dblclick on <option>s
             var select_dblclick = function(){
-                var i = $(this).attr('selectedIndex');
+                var i = $(this).prop('selectedIndex');
                 var opt = $($(this).find('option')[i])
 
                 opt.dblclick()
